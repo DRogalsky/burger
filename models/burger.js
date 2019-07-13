@@ -7,10 +7,10 @@ var burger = {
         });
     },
 
-    one: function(name, cb) {
-        orm.selectOne(name, function(res) {
+    create: function(cols, vals, cb) {
+        orm.insertOne("burgers", cols, vals, function(res) {
             cb(res);
-        });
+        })
     },
 
     update: function(objColVals, condition, cb) {

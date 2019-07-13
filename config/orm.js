@@ -1,5 +1,15 @@
 var connection = require("../config/connection.js");
 
+function printQuestionMarks(num) {
+    var arr = [];
+
+    for (var i = 0; i < num; i++) {
+        arr.push("?");
+    }
+
+    return arr.toString();
+}
+
 function objToSql(ob) {
     var arr = [];
 
@@ -31,12 +41,26 @@ let orm = {
         })
 
     },
-    selectOne: function (selector, cb) {
-        let queryString = "SELECT * FROM burgers WHERE burger_name = '" + selector + "' LIMIT 1;";
-        connection.query(queryString, function (err, data) {
+
+    insertOne: function (table, cols, vals, cb) {
+
+        var queryString = "INSERT INTO " + table;
+
+        queryString += " (";
+        queryString += cols.toString();
+        queryString += ") ";
+        queryString += "VALUES (";
+        queryString += printQuestionMarks(vals.length);
+        queryString += ") ";
+
+        console.log(queryString);
+
+        connection.query(queryString, vals, function (err, result) {
             if (err) throw err;
-            cb(data);
-        })
+
+            cb(result);
+        });
+
     },
     updateOne: function (table, objColVals, condition, cb) {
         let queryString = "UPDATE " + table + " SET ";
