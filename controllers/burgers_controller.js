@@ -9,7 +9,7 @@ router.get('/', function(req, res) {
         var hbsObject = {
             burgers: data
         };
-        console.log(hbsObject);
+        console.table(hbsObject.burgers);
         res.render("index", hbsObject);
     })
 })
@@ -30,7 +30,7 @@ router.put("/api/burgers/:id", function(req, res) {
     burger.update({
         devoured: req.body.devoured
     }, condition, function(data) {
-        if (result.changedRows == 0) {
+        if (data.changedRows == 0) {
             // If no rows were changed, then the ID must not exist, so 404
             return res.status(404).end();
           } else {
