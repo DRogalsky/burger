@@ -1,5 +1,5 @@
 # burger
-making a full stack app for practice that involved a list with burgers to eat. First deployed full stack application!
+making a full stack app for practice that involved a list with burgers to eat.
 
 ## Getting Started
 A deployed version of the app can be found here https://mighty-journey-36259.herokuapp.com/.
