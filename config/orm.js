@@ -32,14 +32,14 @@ let orm = {
 
     },
     selectOne: function (selector, cb) {
-        let queryString = "SELECT * FROM burgers WHERE burger_name = " + selector + " LIMIT 1;";
+        let queryString = "SELECT * FROM burgers WHERE burger_name = '" + selector + "' LIMIT 1;";
         connection.query(queryString, function (err, data) {
             if (err) throw err;
             cb(data);
         })
     },
     updateOne: function (table, objColVals, condition, cb) {
-        let queryString = "UPDATE" + table + " SET ";
+        let queryString = "UPDATE " + table + " SET ";
         queryString += objToSql(objColVals);
         queryString += " WHERE ";
         queryString += condition;
